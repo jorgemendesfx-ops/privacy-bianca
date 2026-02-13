@@ -1,0 +1,227 @@
+/* =========================
+BASE / FUNDO PREMIUM
+========================= */
+body{
+background: radial-gradient(circle at top, #1b0f2a 0%, #0b0614 60%);
+color:#F5EFFF;
+font-family: 'Inter', Arial, Helvetica, sans-serif;
+text-align:center;
+padding-top:10px;
+}
+
+/* =========================
+HEADER VIDRO LUXO
+========================= */
+.topo{
+position:sticky;
+top:0;
+background:rgba(20,10,34,0.55);
+backdrop-filter:blur(12px);
+padding:12px 20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+z-index:1000;
+border-bottom:1px solid rgba(199,125,255,0.25);
+box-shadow:0 0 25px rgba(255,46,136,0.15);
+}
+
+.logo{
+font-weight:bold;
+font-size:18px;
+background:linear-gradient(90deg,#FF2E88,#C77DFF);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.topo nav a{
+color:#B9A7D6;
+text-decoration:none;
+margin-left:18px;
+font-size:14px;
+transition:.25s;
+}
+
+.topo nav a:hover{
+color:#FF5CAD;
+text-shadow:0 0 12px rgba(255,46,136,0.6);
+}
+
+/* =========================
+GRID
+========================= */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+gap:18px;
+padding:20px;
+}
+
+/* =========================
+THUMBS PREMIUM CARD
+========================= */
+.thumb{
+position:relative;
+border-radius:18px;
+overflow:hidden;
+background:linear-gradient(145deg,#1a0f2e,#140a22);
+border:1px solid rgba(199,125,255,0.18);
+transition:.35s;
+}
+
+.thumb:hover{
+transform:translateY(-6px) scale(1.02);
+box-shadow:
+0 0 0 1px rgba(255,46,136,0.4),
+0 10px 35px rgba(255,46,136,0.35),
+0 0 60px rgba(199,125,255,0.25);
+}
+
+img, video{
+width:100%;
+height:180px;
+object-fit:cover;
+cursor:pointer;
+transition:.2s;
+}
+
+/* =========================
+PLAY OVERLAY QUENTE
+========================= */
+.thumb::after{
+content:'▶';
+position:absolute;
+inset:0;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:50px;
+color:white;
+background:radial-gradient(circle, rgba(255,46,136,0.85), rgba(199,125,255,0.55));
+opacity:0;
+transition:.25s;
+pointer-events:none;
+}
+
+.thumb:hover::after{
+opacity:1;
+}
+
+/* =========================
+FAVORITO
+========================= */
+.fav{
+position:absolute;
+top:8px;
+right:8px;
+font-size:20px;
+background:rgba(10,5,20,0.6);
+padding:6px 8px;
+border-radius:50%;
+cursor:pointer;
+transition:.25s;
+backdrop-filter:blur(6px);
+}
+
+.fav:hover{ transform:scale(1.25); }
+
+.fav.active{
+color:#FF2E88;
+text-shadow:0 0 12px rgba(255,46,136,.8);
+}
+
+/* =========================
+PASTAS HOME
+========================= */
+.pastas{
+display:flex;
+justify-content:center;
+gap:60px;
+margin-top:80px;
+}
+
+.pasta{
+background:linear-gradient(145deg,#1a0f2e,#140a22);
+padding:40px;
+border-radius:22px;
+text-decoration:none;
+color:#F5EFFF;
+font-size:22px;
+transition:.35s;
+border:1px solid rgba(199,125,255,0.18);
+}
+
+.pasta:hover{
+transform:translateY(-8px) scale(1.05);
+box-shadow:
+0 0 0 1px rgba(255,46,136,0.4),
+0 15px 40px rgba(255,46,136,0.4),
+0 0 80px rgba(199,125,255,0.35);
+}
+
+.icone{ font-size:50px; margin-bottom:10px; }
+
+/* =========================
+VIEWER
+========================= */
+.viewer{
+position:fixed;
+inset:0;
+background:rgba(5,0,15,.96);
+backdrop-filter:blur(10px);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:999;
+}
+
+.viewer img{
+max-height:92vh;
+max-width:95vw;
+width:auto;
+height:auto;
+object-fit:contain;
+}
+
+.viewer video{
+max-width:95vw;
+max-height:92vh;
+}
+
+.fechar{
+position:absolute;
+top:20px;
+right:30px;
+font-size:40px;
+cursor:pointer;
+color:#FF5CAD;
+}
+
+/* =========================
+MOBILE
+========================= */
+@media (max-width:600px){
+.pastas{
+flex-direction:column;
+align-items:center;
+gap:30px;
+margin-top:60px;
+}
+.pasta{ width:180px; padding:35px 20px; font-size:20px; }
+.icone{ font-size:60px; }
+h1{ font-size:22px; }
+}
+
+/* =========================
+BARRA PROGRESSO HOT
+========================= */
+#barraProgresso{
+position:fixed;
+top:0;
+left:0;
+height:3px;
+width:0%;
+background:linear-gradient(90deg,#FF2E88,#C77DFF);
+z-index:2000;
+transition:width .1s linear;
+}

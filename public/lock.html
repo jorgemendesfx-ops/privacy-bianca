@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Acesso restrito</title>
+<style>
+body{
+    background:#0f0f0f;
+    color:white;
+    font-family:Arial;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:100vh;
+    text-align:center;
+}
+
+.box{
+    background:#1c1c1c;
+    padding:40px;
+    border-radius:15px;
+    width:300px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin-top:15px;
+    border:none;
+    border-radius:8px;
+    outline:none;
+    font-size:16px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border:none;
+    border-radius:8px;
+    background:#ff2e63;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.erro{
+    color:#ff4d4d;
+    margin-top:10px;
+    display:none;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+<h2>Área Privada</h2>
+<p>Digite a senha para acessar</p>
+
+<input type="password" id="senha" placeholder="Senha">
+<button onclick="verificar()">Entrar</button>
+
+<div class="erro" id="erro">Senha incorreta</div>
+</div>
+
+<script>
+function verificar(){
+    const senha = document.getElementById("senha").value;
+
+    if(senha === "BIANCAVIP"){
+        sessionStorage.setItem("acesso","liberado");
+        window.location = "/";
+    }else{
+        document.getElementById("erro").style.display="block";
+    }
+}
+</script>
+
+</body>
+</html>
