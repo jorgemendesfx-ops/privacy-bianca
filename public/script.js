@@ -10,8 +10,9 @@ const fechar = document.getElementById('fechar');
 
 let pagina = 1;
 let carregando = false;
+let abriuAutomatico = false;
 
-/* ===== FAVORITOS ===== */
+/* favoritos */
 let favoritos = JSON.parse(localStorage.getItem("favoritos") || "[]");
 
 function salvarFavoritos(){
@@ -45,13 +46,13 @@ wrapper.appendChild(fav);
 
 }
 
-/* ===== INICIAR ===== */
+/* iniciar */
 if(tipo){
 titulo.textContent = tipo.toUpperCase();
 carregarMidias();
 }
 
-/* ===== CARREGAR MIDIAS ===== */
+/* carregar midias */
 async function carregarMidias(){
 if(carregando) return;
 carregando = true;
@@ -65,7 +66,6 @@ arquivos.forEach(nome => {
     const wrapper = document.createElement('div');
     wrapper.className="thumb";
 
-    /* FOTO */
     if(tipo === "fotos"){
         const src = `/${tipo}/${nome}`;
 
@@ -75,9 +75,14 @@ arquivos.forEach(nome => {
 
         wrapper.appendChild(img);
         criarBotaoFav(src, wrapper);
+
+        /* abrir direto */
+        if(!abriuAutomatico && abrirDireto === src){
+            abriuAutomatico = true;
+            setTimeout(()=>abrirMidia('img',src),200);
+        }
     }
 
-    /* VIDEO */
     if(tipo === "videos"){
         const src = `/${tipo}/${nome}`;
 
@@ -89,6 +94,12 @@ arquivos.forEach(nome => {
 
         wrapper.appendChild(capa);
         criarBotaoFav(src, wrapper);
+
+        /* abrir direto */
+        if(!abriuAutomatico && abrirDireto === src){
+            abriuAutomatico = true;
+            setTimeout(()=>abrirMidia('video',src),200);
+        }
     }
 
     grid.appendChild(wrapper);
@@ -96,25 +107,18 @@ arquivos.forEach(nome => {
 
 pagina++;
 carregando = false;
-
-/* abrir automaticamente vindo da home */
-if(abrirDireto){
-    setTimeout(()=>{
-        abrirMidia(tipo === "fotos" ? "img" : "video", abrirDireto);
-    },300);
-}
 ```
 
 }
 
-/* ===== SCROLL INFINITO ===== */
+/* scroll infinito */
 window.addEventListener('scroll', () => {
 if(window.innerHeight + window.scrollY >= document.body.offsetHeight - 300){
 carregarMidias();
 }
 });
 
-/* ===== VISUALIZADOR ===== */
+/* visualizador */
 function abrirMidia(tipo, src){
 viewer.style.display = "flex";
 conteudo.innerHTML = "";
